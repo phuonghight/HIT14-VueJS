@@ -1,9 +1,7 @@
 <script setup>
     import {ref} from 'vue';
     const activeDarkMode = ref(false);
-    const activeLightMode = ref(true);
     const active = () => {
-        activeLightMode.value = !activeLightMode.value; 
         activeDarkMode.value = !activeDarkMode.value;
     }
 </script>
@@ -12,7 +10,7 @@
     <div class="wrap" :class="{'is-dark-mode': activeDarkMode}">
         <p class="title" :class="{'heading--dark-mode': activeDarkMode}">
             The 
-            <span :class="{'heading--light-mode': activeLightMode}">Progressive</span> <br> 
+            <span :class="{'heading--light-mode': !activeDarkMode}">Progressive</span> <br> 
             Javascript Framework
         </p>
         <p class="desc" :class="{'text--dark-mode': activeDarkMode}">
