@@ -77,3 +77,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/* The line `// import "./style.css";` is a commented-out import statement in JavaScript. This means
+that it is a line of code that is not currently active or executed by the program. It is typically
+used for providing additional information or context to the code, or for temporarily disabling
+certain parts of the code without deleting them. In this case, the import statement is commented
+out, so it is not being used to import a CSS file named "style.css" into the JavaScript file. */
