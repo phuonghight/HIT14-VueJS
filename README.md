@@ -1,63 +1,199 @@
-# Lession 01
+# Lession 03
 
-## I. What is Vue?
+## I. Lifecycle Hooks
 
-1. Javascipt Framework (Typescript support) for building user interfaces
+**Provides APIs, helping developers add code at special stages of a component**
+![Lifecycle Hooks Diagram](https://vuejs.org/assets/lifecycle.MuZLBFAS.png)
+_Lifecycle Hooks Diagram_
 
-2. There are two core features of Vue:
+### 1. Before mount: `onBeforeMount()`
 
-- **Declarative Rendering**: Vue extends standard HTML with a `template syntax` that allows us to declaratively describe HTML output based on JavaScript state.
+- Registers a hook to be called right before the component is to be mounted.
+- When this hook is called, the component has finished setting up its reactive state.
 
-- **Reactivity**: Vue automatically tracks JavaScript state changes and efficiently updates the DOM when changes happen.
-
-## II. Single Page Application
-
-1. Only a single HTML page initial in browser.
-2. Faster and Smoother experience.
-
-## II. Creating a Vue app
-
-**_Required:_**
-
-- IDE: [Visual Studio Code](https://code.visualstudio.com/download)
-- Environment: [NodeJS](https://nodejs.org/en)
-
-1. Use `npm`:
-
-```bash
-npm create vue@latest
+```js
+import { onBeforeMount } from 'vue';
+onBeforeMount(callback);
 ```
 
-or
+### 2. Mounted: `onMounted()`
 
-```bash
-npm create vite
+- Registers a callback to be called after the component has been mounted.
+
+- Can be used to access the DOM.
+
+```js
+import { onMounted } from 'vue';
+onMounted(callback);
 ```
 
-2. Use CDN
+### 3. Before update: `onBeforeUpdate()`
 
-Script tag: `<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>`
+- Registers a hook to be called right before the component is about to update its DOM tree due to a reactive state change.
+- Can be used to access the DOM state before Vue updates the DOM.
 
-## III. Single-File Components (SFC)
+```js
+import { onBeforeUpdate } from 'vue';
+onBeforeUpdate(callback);
+```
 
-1. SFC (a.k.a. \*.vue files, abbreviated as SFC) is a special file format that allows us to encapsulate the view, logic, and styling of a Vue component in a single file.
+### 4. Updated: `onUpdated()`
 
-```html
-<script setup>
-  import { ref } from "vue";
-  const greeting = ref("Hello World!");
-</script>
+- Registers a callback to be called after the component has updated its DOM tree due to a reactive state change.
 
-<template>
-  <p class="greeting">{{ greeting }}</p>
-</template>
+```js
+import { onUpdated } from 'vue';
+onUpdated(callback);
+```
 
-<style>
-  .greeting {
-    color: red;
-    font-weight: bold;
+### 5. Before unmoute: `onBeforeUnmout()`
+
+- Registers a hook to be called right before a component instance is to be unmounted.
+
+```js
+import { onBeforeUnmout } from 'vue';
+onBeforeUnmout(callback);
+```
+
+### 6. Unmouted: `onUnmounted()`
+
+- Registers a callback to be called after the component has been unmounted.
+- Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+
+```js
+import { onUnmounted } from 'vue';
+onUnmounted(callback);
+```
+
+## II. Axios: Promise based HTTP client for the browser and node.js
+
+### 1. Installing
+
+```bash
+npm install axios
+# or
+yarn add axios
+```
+
+Code:
+
+```js
+import axios, { isCancel, AxiosError } from 'axios';
+```
+
+### 2. Example
+
+```js
+import axios from 'axios';
+axios
+  .get('api_url')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+
+// ES6
+async function get(api_url) {
+  try {
+    const response = await axios.get(api_url);
+    // handle success
+    console.log(response);
+    return response;
+  } catch (error) {
+    // handle error
+    console.log(error);
+  } finally {
+    // always executed
   }
-</style>
+}
 ```
 
-## III. Using Vercel to deploy
+### 3. Request method
+
+- Method: GET, POST, PUT, PATCH, DELETE
+- With config
+
+```js
+// Send a POST request
+axios({
+  method: 'post',
+  url: '/user/12345',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+});
+```
+
+### 4. Response Schema
+
+```js
+{
+  // `data` is the response that was provided by the server
+  data: {},
+  // `status` is the HTTP status code from the server response
+  status: 200,
+  // `statusText` is the HTTP status message from the server response
+  statusText: 'OK',
+  // `headers` the HTTP headers that the server responded with
+  // All header names are lowercase and can be accessed using the bracket notation.
+  // Example: `response.headers['content-type']`
+  headers: {},
+  // `config` is the config that was provided to `axios` for the request
+  config: {},
+  // `request` is the request that generated this response
+  // It is the last ClientRequest instance in node.js (in redirects)
+  // and an XMLHttpRequest instance in the browser
+  request: {}
+}
+```
+
+### 5. Instance
+
+```js
+const config = {
+  baseURL: 'https://some-domain.com/api/v1',
+  headers: {
+    // application/x-www-form-urlencoded, multipart/form-data, text/plain
+    'Content-Type': 'application/json'
+  }
+};
+const instance = axios.create(config);
+```
+
+### 6. Interceptors
+
+```js
+// Add a request interceptor
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+
+// Add a response interceptor
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
+```
