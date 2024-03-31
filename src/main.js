@@ -1,7 +1,8 @@
-import { createApp } from "vue";
-import "./style.css";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import './style.css';
+import App from './App.vue';
+import WeatherApp from './components/WeatherApp.vue';
 
-const app = createApp(App);
+const app = createApp(WeatherApp);
 
-app.mount("#app");
+app.mount('#app');
