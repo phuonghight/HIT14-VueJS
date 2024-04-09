@@ -1,199 +1,160 @@
-# Lession 03
+# Lession 05
 
-## I. Lifecycle Hooks
+## I. Watchers
 
-**Provides APIs, helping developers add code at special stages of a component**
-![Lifecycle Hooks Diagram](https://vuejs.org/assets/lifecycle.MuZLBFAS.png)
-_Lifecycle Hooks Diagram_
+### 1. `watch()`
 
-### 1. Before mount: `onBeforeMount()`
+Params:
 
-- Registers a hook to be called right before the component is to be mounted.
-- When this hook is called, the component has finished setting up its reactive state.
+- Source: a reactive state or a getter function.
+- Callback: any function.
+- Options?: a object (deep, immediate, once)
 
-```js
-import { onBeforeMount } from 'vue';
-onBeforeMount(callback);
-```
-
-### 2. Mounted: `onMounted()`
-
-- Registers a callback to be called after the component has been mounted.
-
-- Can be used to access the DOM.
+The `callback` function will be executed when `source` be changes.
 
 ```js
-import { onMounted } from 'vue';
-onMounted(callback);
-```
-
-### 3. Before update: `onBeforeUpdate()`
-
-- Registers a hook to be called right before the component is about to update its DOM tree due to a reactive state change.
-- Can be used to access the DOM state before Vue updates the DOM.
-
-```js
-import { onBeforeUpdate } from 'vue';
-onBeforeUpdate(callback);
-```
-
-### 4. Updated: `onUpdated()`
-
-- Registers a callback to be called after the component has updated its DOM tree due to a reactive state change.
-
-```js
-import { onUpdated } from 'vue';
-onUpdated(callback);
-```
-
-### 5. Before unmoute: `onBeforeUnmout()`
-
-- Registers a hook to be called right before a component instance is to be unmounted.
-
-```js
-import { onBeforeUnmout } from 'vue';
-onBeforeUnmout(callback);
-```
-
-### 6. Unmouted: `onUnmounted()`
-
-- Registers a callback to be called after the component has been unmounted.
-- Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
-
-```js
-import { onUnmounted } from 'vue';
-onUnmounted(callback);
-```
-
-## II. Axios: Promise based HTTP client for the browser and node.js
-
-### 1. Installing
-
-```bash
-npm install axios
-# or
-yarn add axios
-```
-
-Code:
-
-```js
-import axios, { isCancel, AxiosError } from 'axios';
-```
-
-### 2. Example
-
-```js
-import axios from 'axios';
-axios
-  .get('api_url')
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function () {
-    // always executed
-  });
-
-// ES6
-async function get(api_url) {
-  try {
-    const response = await axios.get(api_url);
-    // handle success
-    console.log(response);
-    return response;
-  } catch (error) {
-    // handle error
-    console.log(error);
-  } finally {
-    // always executed
-  }
-}
-```
-
-### 3. Request method
-
-- Method: GET, POST, PUT, PATCH, DELETE
-- With config
-
-```js
-// Send a POST request
-axios({
-  method: 'post',
-  url: '/user/12345',
-  data: {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  }
+const count = ref(0);
+watch(count, () => {
+  console.log('Count is change: ', count.value);
 });
 ```
 
-### 4. Response Schema
+### 2. `watchEffect()`
+
+Params:
+
+- Callback: any function.
+
+The `callback` function will be executed immediate and whenever a reactive state inside it changes.
 
 ```js
-{
-  // `data` is the response that was provided by the server
-  data: {},
-  // `status` is the HTTP status code from the server response
-  status: 200,
-  // `statusText` is the HTTP status message from the server response
-  statusText: 'OK',
-  // `headers` the HTTP headers that the server responded with
-  // All header names are lowercase and can be accessed using the bracket notation.
-  // Example: `response.headers['content-type']`
-  headers: {},
-  // `config` is the config that was provided to `axios` for the request
-  config: {},
-  // `request` is the request that generated this response
-  // It is the last ClientRequest instance in node.js (in redirects)
-  // and an XMLHttpRequest instance in the browser
-  request: {}
-}
+const count = ref(0);
+watchEffect(() => {
+  console.log('Count is change: ', count.value);
+});
 ```
 
-### 5. Instance
+## II. Template Refs
 
-```js
-const config = {
-  baseURL: 'https://some-domain.com/api/v1',
-  headers: {
-    // application/x-www-form-urlencoded, multipart/form-data, text/plain
-    'Content-Type': 'application/json'
-  }
-};
-const instance = axios.create(config);
+When need direct access to the DOM elements, can use the special ref attribute.
+It allows us to obtain a direct reference to a specific DOM element or child component instance after it's mounted.
+
+### 1. Accessing the Refs
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const h1Ref = ref(null);
+onMounted(() => {
+  console.log(h1Ref.value.textContent);
+});
+</script>
+
+<template>
+  <h1 ref="h1Ref">This is text content of h1 tag</h1>
+</template>
 ```
 
-### 6. Interceptors
+### 2. Refs in `v-for`
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue';
+const list = ref([]);
+const itemRefs = ref([]);
+onMounted(() => console.log(itemRefs.value));
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="itemRefs">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+## III. Component Basics
+
+![](https://vuejs.org/assets/components.B1JZbf0_.png)
+
+### 1. Defining a Component
+
+A component is usually a single `.vue` file (SFC).
+Use `PascalCase` to name for file.
+
+### 2. Using a Component
 
 ```js
-// Add a request interceptor
-axios.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+import ButtonCounter from './ButtonCounter.vue';
+```
 
-// Add a response interceptor
-axios.interceptors.response.use(
-  function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-  },
-  function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error);
-  }
-);
+```html
+<!-- use PascalCase -->
+<ButtonCounter></ButtonCounter>
+
+<!-- use kebab-case -->
+<button-counter></button-counter>
+```
+
+### 3. Props
+
+Example of `Blog.vue`:
+
+```vue
+<script setup>
+import { defineProps } from 'vue';
+defineProps(['title', 'content']);
+</script>
+
+<template>
+  <h1>{{ title }}</h1>
+  <p>{{ content }}</p>
+</template>
+```
+
+Whenever need to use Blog component:
+
+```html
+<Blog
+  title="Why Vue is so fun"
+  content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sit eligendi laboriosam quasi enim commodi voluptatem optio iusto ducimus esse."
+/>
+```
+
+### 4. Events
+
+We can pass a event from parent into component through `defineEmits()`
+
+```vue
+<script setup>
+import { defineProps } from 'vue';
+defineProps(['title', 'content', 'titleColor']);
+const emits = defineEmits(['colored-title']);
+</script>
+
+<template>
+  <h1 :style="{ color: titleColor }">{{ title }}</h1>
+  <p>{{ content }}</p>
+  <button @click="emits('colored-title')">Change color of title</button>
+</template>
+```
+
+In parent, declare a funtion which can be excuted in child component:
+
+```vue
+<script setup>
+import Blog from './Blog.vue';
+const titleColor = 'black';
+</script>
+
+<template>
+  <Blog
+    title="Why Vue is so fun"
+    content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sit eligendi laboriosam quasi enim commodi voluptatem optio iusto ducimus esse."
+    :title-color="titleColor"
+    @colored-title="titleColor = 'red'"
+  />
+</template>
 ```
