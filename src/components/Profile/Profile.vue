@@ -81,9 +81,6 @@
                 password.error = true;
             })
             .catch(error => {
-                console.log(error.response.data.message);
-                console.log(error.response.data.message.email);
-
                 fullName.error = false;
                 fullName.alert = error.response.data.message.fullName;
 
