@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$primary-color: #496989;
+$second-color: #58A399;
+$third-color: #A8CD9F;
+$fourth-color: #E2F4C5;
+$font-text: "Kanit", sans-serif;
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav {
+    text-align: right;
+    padding: 20px;
+
+    button {
+        background-color: #496989;
+        color: $fourth-color;
+        font-weight: 600;
+        border: none;
+        padding: 16px 32px;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+
+    button:nth-child(1) {
+        margin-right: 15px;
+    }
+
+    button:hover {
+        background-color: $second-color;
+    }
+}
+
+.form-wrap {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $primary-color;
+    border-radius: 30px;
+    padding: 30px;
+    margin: 0 0 20px;
+
+    * {
+        font-family: $font-text;
+    }
+
+    h1 {
+        color: $fourth-color;
+        position: relative;
+        margin: 0 0 21pxs
+    }
+
+    h1::after {
+        content: '';
+        display: block;
+        width: 150px;
+        height: 5px;
+        background-color: $fourth-color;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    form {
+        width: 65%;
+        flex: 1;
+            
+        label {
+            color: $fourth-color;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 90%;
+            height: 12%;
+            border-radius: 15px;
+            outline: none;
+            border: none;
+            padding: 8px 16px;
+        }
+
+        input:not(input[type="button"]) {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        input[type="button"] {
+            width: 50%;
+            height: 15%;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: $second-color;
+            color: $fourth-color;
+        }
+
+        .form-error {
+            color: rgb(255, 57, 57);
+        }
+
+        .change-register {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-feature {
+            text-decoration: underline;
+            color: $fourth-color;
+            opacity: .5;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .form-feature:hover {
+            opacity: 1;
+        }
+
+        .password-required {
+            width: 100%;
+            font-size: 13px;
+            color: #d7d7d7;
+            margin-left: -15px;
+            margin-top: 0;
+        }
+
+    }
+}
+
+.profile {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: $primary-color;
+    border-radius: 30px;
+    color: $fourth-color;
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border: 1px solid;
+        border-radius: 50%;
+        margin-right: 30px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .infor {
+        font-size: 18px;
+
+        span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    i {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+}
+
+.fade {
+    animation: fade .5s;
+}
+
+@keyframes fade {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
