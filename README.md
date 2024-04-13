@@ -158,3 +158,21 @@ const titleColor = 'black';
   />
 </template>
 ```
+
+### 5. Slot
+
+![](https://vuejs.org/assets/slots.CKcE8XYd.png)
+
+```html
+<FancyButton>
+  <!-- slot content -->
+  Click me!
+</FancyButton>
+```
+
+```html
+<button class="fancy-btn">
+  <!-- slot outlet -->
+  <slot></slot>
+</button>
+```
