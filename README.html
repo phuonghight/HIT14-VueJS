@@ -1,0 +1,357 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\hoang\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.13\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="lession-06-vue-router">Lession 06: Vue Router </h1>
+<p>Mục Lục:</p>
+<ul>
+<li><a href="#lession-06-vue-router">Lession 06: Vue Router</a>
+<ul>
+<li><a href="#i-routeing-v%C3%A0-vue-router">I. Routeing và Vue Router</a>
+<ul>
+<li><a href="#1-routing">1. Routing</a></li>
+<li><a href="#2-vue-router">2. Vue Router</a></li>
+</ul>
+</li>
+<li><a href="#ii-getting-started-b%E1%BA%AFt-%C4%91%E1%BA%A7u-v%E1%BB%9Bi-vue-router">II. Getting started: Bắt đầu với Vue Router</a>
+<ul>
+<li><a href="#1-config-d%C3%B9ng-m%E1%BB%97i-sfc-l%C3%A0m-instance-cho-m%E1%BB%97i-page">1. Config: Dùng mỗi SFC làm instance cho mỗi page</a></li>
+<li><a href="#2-c%C3%A1ch-%C4%91i%E1%BB%81u-h%C6%B0%E1%BB%9Bng">2. Cách điều hướng</a></li>
+<li><a href="#3-n%C6%A1i-hi%E1%BB%83n-th%E1%BB%8B-sau-khi-%C4%91i%E1%BB%81u-h%C6%B0%E1%BB%9Bng">3. Nơi hiển thị sau khi điều hướng</a></li>
+</ul>
+</li>
+<li><a href="#iii-c%C3%A1c-y%E1%BA%BFu-t%E1%BB%91-quan-tr%E1%BB%8Dng">III. Các yếu tố quan trọng</a>
+<ul>
+<li><a href="#1-dynamic-route-matching-t%E1%BA%A1o-b%E1%BB%99-%C4%91%E1%BB%8Bnh-tuy%E1%BA%BFn-%C4%91%E1%BB%99ng">1. Dynamic route matching: tạo bộ định tuyến động</a></li>
+<li><a href="#2-named-routes-%C4%91%E1%BA%B7t-t%C3%AAn-cho-c%C3%A1c-route">2. Named Routes: Đặt tên cho các route</a></li>
+<li><a href="#3-nested-routes-page-in-page">3. Nested Routes: page in page</a></li>
+<li><a href="#4-route-meta-fields">4. Route Meta Fields</a></li>
+<li><a href="#5-navigation-guards-b%E1%BA%A3o-v%E1%BB%87-%C4%91i%E1%BB%81u-h%C6%B0%E1%BB%9Bng">5. Navigation Guards: Bảo vệ điều hướng?</a></li>
+<li><a href="#6-programmatic-navigation-%C4%91i%E1%BB%81u-h%C6%B0%E1%BB%9Bng-theo-h%C6%B0%E1%BB%9Bng-l%E1%BA%ADp-tr%C3%ACnh">6. Programmatic Navigation: điều hướng theo hướng lập trình.</a></li>
+<li><a href="#7-active-links">7. Active links</a></li>
+<li><a href="#8-scroll-behavior-h%C3%A0nh-vi-cu%E1%BB%99n-trang">8. Scroll Behavior: hành vi cuộn trang.</a></li>
+<li><a href="#9-transitions-cooming-soon">9. Transitions (cooming soon)</a></li>
+</ul>
+</li>
+<li><a href="#c%C3%A2u-h%E1%BB%8Fi">Câu hỏi:</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="i-routeing-và-vue-router">I. Routeing và Vue Router </h2>
+<h3 id="1-routing">1. Routing </h3>
+<p><code>Routing</code> là định tuyến trang web đến một trang web khác. Trình duyệt sẽ gửi request đến server dựa trên URL khi người dùng truy cập.</p>
+<ul>
+<li>Với các trang web truyền thống, khi click vào đường link, trình duyệt sẽ nhận được HTML response từ server và tải lại toàn bộ trang web.</li>
+<li>Với SPA, JavaScript có thể ngăn chặn việc điều hướng, tự động fetch data và update trang hiện tại mà không cần tải lại toàn bộ trang.</li>
+</ul>
+<h3 id="2-vue-router">2. Vue Router </h3>
+<ul>
+<li>Là thư viện định tuyến chính thức của VueJS.</li>
+<li>Cài đặt:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">npm</span> <span class="token function">install</span> vue-router@4
+</code></pre><h2 id="ii-getting-started-bắt-đầu-với-vue-router">II. Getting started: Bắt đầu với Vue Router </h2>
+<h3 id="1-config-dùng-mỗi-sfc-làm-instance-cho-mỗi-page">1. Config: Dùng mỗi SFC làm instance cho mỗi page </h3>
+<ul>
+<li>Tạo một file router.js</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> createRouter<span class="token punctuation">,</span> createWebHistory <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token maybe-class-name">About</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'@components/About.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token maybe-class-name">User</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'@components/User.vue'</span><span class="token punctuation">;</span>
+
+<span class="token keyword module keyword-export">export</span> <span class="token keyword keyword-const">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">history</span><span class="token operator">:</span> <span class="token function">createWebHistory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">routes</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'home'</span>
+      <span class="token function-variable function">component</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token keyword module keyword-import">import</span><span class="token punctuation">(</span><span class="token string">'@pages/index.vue'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'about'</span>
+      <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">About</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'user'</span>
+      <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">User</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p><em>Lưu ý: để sử dụng SFC làm page thì phải thêm plugin cho app.</em></p>
+<ul>
+<li>Ở file main.js:</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> createApp <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token maybe-class-name">App</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'./App.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> router <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'./router.js'</span><span class="token punctuation">;</span> <span class="token comment">// inport file config cho router</span>
+
+<span class="token keyword keyword-const">const</span> app <span class="token operator">=</span> <span class="token function">createApp</span><span class="token punctuation">(</span><span class="token maybe-class-name">App</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token method function property-access">use</span><span class="token punctuation">(</span>router<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// thêm plugin</span>
+app<span class="token punctuation">.</span><span class="token method function property-access">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="2-cách-điều-hướng">2. Cách điều hướng </h3>
+<p><code>Vue Router</code> cung cấp 2 cách điều hướng chính:</p>
+<p>a) Sử dụng component: <code>RouterLink</code></p>
+<ul>
+<li>Khi sử dụng <code>RouterLink</code>, Vue sẽ render thành thẻ <code>&lt;a&gt;&lt;a/&gt;</code> và tạo ra một liên kết trên trang web.</li>
+<li>Props bắt buộc phải có của <code>RouterLink</code> là <code>to</code>, có kiểu <code>string</code> là path tới page hoặc 1 <code>object</code>.</li>
+</ul>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Go to Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Go to About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">&gt;</span></span>
+</code></pre><p><em>Lưu ý: khi sử dụng <code>to</code> cho <code>RouterLink</code>, path truyền cần phải match với SFC đã được định nghĩa</em></p>
+<p>b) Sử dụng code js (Programmatic: có lập trình)</p>
+<p><code>Vue Router</code> cung cấp composabe để giúp điều hướng thông qua JavaScript</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> useRouter <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> router <span class="token operator">=</span> <span class="token function">useRouter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">'/about'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/user'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Đối số truyền vào của phương thức <code>push</code> cũng giống như prop <code>to</code> của <code>RouterLink</code> component.</p>
+<h3 id="3-nơi-hiển-thị-sau-khi-điều-hướng">3. Nơi hiển thị sau khi điều hướng </h3>
+<ul>
+<li>
+<p><code>RouterView</code> chính là nơi để hứng component tương ứng khi người dùng điều hướng qua <code>RouterLink</code> hoặc <code>push()</code>.</p>
+</li>
+<li>
+<p>Thường sẽ config ngay ở <code>App.vue</code>:</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span> <span class="token punctuation">/&gt;</span></span>
+</code></pre><p><em>Sau khi điều hướng, các component tương ứng sẽ thay thế vị trí của <code>router-view</code></em></p>
+<h2 id="iii-các-yếu-tố-quan-trọng">III. Các yếu tố quan trọng </h2>
+<h3 id="1-dynamic-route-matching-tạo-bộ-định-tuyến-động">1. Dynamic route matching: tạo bộ định tuyến động </h3>
+<p>Điều này cho phép chỉ cần 1 SFC có thể làm instance cho nhiều page. Các page như thế thường có đặc điểm chung về giao diện và khác nhau về dữ liệu. <code>Vue Router</code> sử dụng 1 cái bộ phận động trong <code>path</code>, gọi là <code>param</code>:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/users/:id'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">User</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>Khi truy cập vào các URL như <code>/users/1</code>, <code>/users/2</code>,... thì tất cả đều match tới <code>User</code> component và page sẽ có <code>param</code> <code>id</code> sẽ tương ứng là <code>1</code>, <code>2</code>,...</p>
+<p><em>Làm sao để điều hướng đến một dynamic route?</em></p>
+<p>a) Sử dụng component <code>RouterLink</code></p>
+<ul>
+<li>Cách cùi bắp:</li>
+</ul>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/users/1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>User 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/users/2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>User 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+</code></pre><ul>
+<li>Cách hay sử dụng:</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> userId <span class="token operator">=</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{ path: '/users', params: { id: userId } }<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  User {{ userId }}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+</code></pre><p>b) Sử dụng JS:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> userId <span class="token operator">=</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
+<span class="token comment">// cách cùi bắp 1</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/users/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>userId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// cách cùi bắp 2</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/users'</span><span class="token punctuation">,</span> <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> userId <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Có thể có <em>multiple params</em>, ví dụ</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/users/:username'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">User</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/users/:username/post/:postId'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">UserPost</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>Ở component, muốn lấy ra các params, sử dụng composable <code>useRoute()</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> watch <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> useRoute <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> route <span class="token operator">=</span> <span class="token function">useRoute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+consle<span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>route<span class="token punctuation">.</span><span class="token property-access">params</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Catch all / 404 Not found Route</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// will match everything and put it under `route.params.pathMatch`</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/:pathMatch(.*)*'</span><span class="token punctuation">,</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'NotFound'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">NotFound</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// will match anything starting with `/user-` and put it under `route.params.afterUser`</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/user-:afterUser(.*)'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">UserGeneric</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><h3 id="2-named-routes-đặt-tên-cho-các-route">2. Named Routes: Đặt tên cho các route </h3>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">Login</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/user/:id'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'profile'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">User</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>Khi config route, nếu thêm thuộc tính <code>name</code> cho route, khi điều hướng thay vì dùng <code>path</code>, chúng ta có thể dùng <code>name</code>.</p>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{ name: 'login' }<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Login <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{ name: 'profile', params: { id: 1 } }<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  User profile
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+</code></pre><h3 id="3-nested-routes-page-in-page">3. Nested Routes: page in page </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>/user/1/profile                   /user/1/posts
+┌──────────────────┐                  ┌──────────────────┐
+│ User             │                  │ User             │
+│ ┌──────────────┐ │                  │ ┌──────────────┐ │
+│ │ Profile      │ │  ●────────────▶  │ │ Posts        │ │
+│ │              │ │                  │ │              │ │
+│ └──────────────┘ │                  │ └──────────────┘ │
+└──────────────────┘                  └──────────────────┘
+</code></pre><p>Tạo nested route bằng cách thêm cách thêm 1 mảng route vào thuộc tính <code>children</code> cho root route khi config.</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/user/:id'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">User</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// UserProfile will be rendered inside User's &lt;router-view&gt;</span>
+        <span class="token comment">// when /user/:id/profile is matched</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'profile'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'user-profile'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">UserProfile</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// UserPosts will be rendered inside User's &lt;router-view&gt;</span>
+        <span class="token comment">// when /user/:id/posts is matched</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'posts'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'user-posts'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">UserPosts</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>Và ở <code>User</code> component không thể thiếu <code>router-view</code> - nơi mà các child route như <code>UserProfile</code> hay <code>UserPosts</code> sẽ được render.</p>
+<pre data-role="codeBlock" data-info="html" class="language-html html"><code><span class="token comment">&lt;!-- User.vue --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>User {{ userId }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre><h3 id="4-route-meta-fields">4. Route Meta Fields </h3>
+<p>Có thể thêm vào thuộc tính <code>meta</code> 1 object bất kỳ khi config route.</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">Login</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">meta</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">layout</span><span class="token operator">:</span> <span class="token string">'auth-layout'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Login'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>Bằng cách sử dụng composable ở SFC, ta có thể sử dụng <code>meta</code> field mà ta đã config ban đầu.</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> route <span class="token operator">=</span> <span class="token function">useRoute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+consle<span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>route<span class="token punctuation">.</span><span class="token property-access">meta</span><span class="token punctuation">.</span><span class="token property-access">layout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">title</span> <span class="token operator">=</span> route<span class="token punctuation">.</span><span class="token property-access">meta</span><span class="token punctuation">.</span><span class="token property-access">title</span><span class="token punctuation">;</span>
+</code></pre><h3 id="5-navigation-guards-bảo-vệ-điều-hướng">5. Navigation Guards: Bảo vệ điều hướng? </h3>
+<p><code>Vue Router</code> cung cấp <code>guards</code> để bảo vệ route bằng cách <code>redirect</code> hoặc <code>cancel</code> khi điều hướng.<br>
+Một số cách tham gia vào quá trình điều hướng</p>
+<p>a) Globally Guards</p>
+<ul>
+<li>Tham gia trước khi vào 1 route nào đó được điều hướng.</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token spread operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token method function property-access">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword module keyword-from">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>loggedIn <span class="token operator">&amp;&amp;</span> to<span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">!==</span> <span class="token string">'Login'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Login'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>loggedIn <span class="token operator">&amp;&amp;</span> to<span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">===</span> <span class="token string">'Login'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// explicitly return false to cancel the navigation</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li>Tham gia vào sau khi 1 route nào đó đã điều hướng xong.</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code>router<span class="token punctuation">.</span><span class="token method function property-access">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword module keyword-from">from</span><span class="token punctuation">,</span> failure</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-const">const</span> appName <span class="token operator">=</span> <span class="token string">'Vue Router Awesome'</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span><span class="token property-access">path</span> <span class="token operator">!==</span> <span class="token string">'/'</span> <span class="token operator">&amp;&amp;</span> to<span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">title</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>to<span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+    <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token property-access">title</span> <span class="token operator">=</span> appName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>b) Per-route Guards</p>
+<p>Có thể định nghĩa <code>beforeEnter</code> cụ thể cho từng route để tham gia vào trước khi điều hướng đến route đó.</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/users/:id'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">component</span><span class="token operator">:</span> <span class="token maybe-class-name">UserDetails</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">beforeEnter</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword module keyword-from">from</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// reject the navigation</span>
+      <span class="token keyword control-flow keyword-return">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p><code>beforeEnter</code> có thể là 1 hàm <code>guards</code> hoặc là 1 mảng chứa các hàm <code>guards</code>.</p>
+<p>c) In-component Guards</p>
+<p>Với Composition API, có thể sử dụng hooks được cung cấp bởi <code>Vue Router</code>: <code>onBeforeRouteUpdate</code> vaf <code>onBeforeRouteLeave</code> ở trong component.</p>
+<h3 id="6-programmatic-navigation-điều-hướng-theo-hướng-lập-trình">6. Programmatic Navigation: điều hướng theo hướng lập trình. </h3>
+<p>Khi sử dụng composable <code>useRouter</code>, ngoài phương thức <code>push</code> để điều hướng thì còn có <code>replace</code>, <code>go</code>, <code>back</code>, <code>forward</code>,...</p>
+<h3 id="7-active-links">7. Active links </h3>
+<p><code>RouterLink</code> component sẽ thêm 2 CSS class khi được active: <code>router-link-active</code> và <code>router-link-exact-active</code></p>
+<p><em>Link được active khi nào?</em></p>
+<ol>
+<li>Khi ...</li>
+<li>Khi ...</li>
+</ol>
+<h3 id="8-scroll-behavior-hành-vi-cuộn-trang">8. Scroll Behavior: hành vi cuộn trang. </h3>
+<p><code>Vue Router</code> cho phép điều cuộn trang đến vị trí nào đó khi điều hướng hoặc giữ nguyên vị trí khi các route được điều hướng, hơn nữa hoàn toàn có thể tùy chỉnh vi khi cuộn.</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-const">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">history</span><span class="token operator">:</span> <span class="token function">createWebHashHistory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">routes</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token spread operator">...</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">scrollBehavior</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword module keyword-from">from</span><span class="token punctuation">,</span> savedPosition</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// return desired position</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>savedPosition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// giữ nguyên vị trí khi chuyển trang, giống với nút back và forward page của trình duyệt.</span>
+      <span class="token keyword control-flow keyword-return">return</span> savedPosition<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// luôn cuộn lên trên thẻ có id là main 1 khoảng cách top 10px</span>
+      <span class="token keyword control-flow keyword-return">return</span> <span class="token punctuation">{</span> <span class="token literal-property property">el</span><span class="token operator">:</span> <span class="token string">'#main'</span><span class="token punctuation">,</span> <span class="token literal-property property">top</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token literal-property property">behavior</span><span class="token operator">:</span> <span class="token string">'smooth'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="9-transitions-cooming-soon">9. Transitions (cooming soon) </h3>
+<h2 id="câu-hỏi">Câu hỏi: </h2>
+<ol>
+<li>Tại sao không cần import mà vẫn có thể sử dụng 2 component <code>RouterLink</code> và <code>RouterView</code>?</li>
+<li>Hiểu thế nào là <code>route</code>, thế nào là <code>router</code>?</li>
+<li>Có bao nhiêu cách điều hướng? Đó là?</li>
+<li>Chuyện gì xảy ra nếu điều hướng đến 1 route chưa được config? Cách xử lý?</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
