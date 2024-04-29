@@ -1,36 +1,30 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import MarkdownIt from 'markdown-it';
-import hljs from 'highlight.js';
 
-const md = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (__) {}
-    }
-
-    return ''; // use external default escaping
-  }
-});
-const result = ref('');
-
+const html = ref('');
 onBeforeMount(async () => {
   try {
-    const res = await fetch('../README.md');
-    const data = await res.text();
-
-    result.value = md.render(data);
-  } catch (error) {}
+    const htmlRes = await fetch('../../README.html');
+    const htmlData = await htmlRes.text();
+    html.value = htmlData;
+  } catch (error) { }
 });
 </script>
 
 <template>
-  <div v-html="result"></div>
+  <div class="docs" v-html="html"></div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.docs {
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 680px) {
+  .docs {
+    width: 90%;
+    font-size: 80%;
+  }
+}
+</style>
