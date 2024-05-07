@@ -38,6 +38,8 @@ Mục Lục:
 
 ```bash
 npm install vue-router@4
+#or
+yarn add vue-router@4
 ```
 
 ## II. Getting started: Bắt đầu với Vue Router

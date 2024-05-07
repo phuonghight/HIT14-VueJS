@@ -4,7 +4,7 @@ import { onBeforeMount, ref } from 'vue';
 const html = ref('');
 onBeforeMount(async () => {
   try {
-    const htmlRes = await fetch('../../README.html');
+    const htmlRes = await fetch('/README.html');
     const htmlData = await htmlRes.text();
     html.value = htmlData;
   } catch (error) { }
