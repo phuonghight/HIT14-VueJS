@@ -1,3 +1,0 @@
-<template>                              
-    <h1>Trang giới thiệu</h1>
-</template>

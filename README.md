@@ -1,420 +1,236 @@
-# Lession 06: Vue Router
+# Lession 07: State management - 🍍 Pinia
 
-Mục Lục:
+Mục lục:
 
-- [Lession 06: Vue Router](#lession-06-vue-router)
-  - [I. Routeing và Vue Router](#i-routeing-và-vue-router)
-    - [1. Routing](#1-routing)
-    - [2. Vue Router](#2-vue-router)
-  - [II. Getting started: Bắt đầu với Vue Router](#ii-getting-started-bắt-đầu-với-vue-router)
-    - [1. Config: Dùng mỗi SFC làm instance cho mỗi page](#1-config-dùng-mỗi-sfc-làm-instance-cho-mỗi-page)
-    - [2. Cách điều hướng](#2-cách-điều-hướng)
-    - [3. Nơi hiển thị sau khi điều hướng](#3-nơi-hiển-thị-sau-khi-điều-hướng)
-  - [III. Các yếu tố quan trọng](#iii-các-yếu-tố-quan-trọng)
-    - [1. Dynamic route matching: tạo bộ định tuyến động](#1-dynamic-route-matching-tạo-bộ-định-tuyến-động)
-    - [2. Named Routes: Đặt tên cho các route](#2-named-routes-đặt-tên-cho-các-route)
-    - [3. Nested Routes: page in page](#3-nested-routes-page-in-page)
-    - [4. Route Meta Fields](#4-route-meta-fields)
-    - [5. Navigation Guards: Bảo vệ điều hướng?](#5-navigation-guards-bảo-vệ-điều-hướng)
-    - [6. Programmatic Navigation: điều hướng theo hướng lập trình.](#6-programmatic-navigation-điều-hướng-theo-hướng-lập-trình)
-    - [7. Active links](#7-active-links)
-    - [8. Scroll Behavior: hành vi cuộn trang.](#8-scroll-behavior-hành-vi-cuộn-trang)
-    - [9. Transitions (cooming soon)](#9-transitions-cooming-soon)
+- [Lession 07: State management - 🍍 Pinia](#lession-07-state-management----pinia)
+  - [I. Quản lý state và thư viện Pinia](#i-quản-lý-state-và-thư-viện-pinia)
+    - [1. Quản lý state là gì?](#1-quản-lý-state-là-gì)
+    - [2. 🍍 Pinia](#2--pinia)
+  - [II. Các khái niệm chính](#ii-các-khái-niệm-chính)
+    - [1. Định nghĩa 1 store](#1-định-nghĩa-1-store)
+      - [Option](#option)
+      - [Setup](#setup)
+      - [Sử dụng store](#sử-dụng-store)
+    - [2. State](#2-state)
+      - [Reset `state`](#reset-state)
+      - [Thay đổi `state`](#thay-đổi-state)
+      - [Subscribing to the `state`](#subscribing-to-the-state)
+    - [3. Getters](#3-getters)
+      - [Truy cập vào `getters` khác](#truy-cập-vào-getters-khác)
+      - [Truyền đối số cho `getters`](#truyền-đối-số-cho-getters)
+      - [Truy cập vào `store` khác](#truy-cập-vào-store-khác)
+    - [4. Actions](#4-actions)
   - [Câu hỏi:](#câu-hỏi)
 
-## I. Routeing và Vue Router
+## I. Quản lý state và thư viện Pinia
 
-### 1. Routing
+#### 1. Quản lý state là gì?
 
-`Routing` là định tuyến trang web đến một trang web khác. Trình duyệt sẽ gửi request đến server dựa trên URL khi người dùng truy cập.
+- Về mặt kỹ thuật, mỗi SFC quản lý state reactive riêng của nó. Nó là 1 vòng khép kín như sau:
+  ![one-way data flow](https://vuejs.org/assets/state-flow.Cd6No79V.png)
 
-- Với các trang web truyền thống, khi click vào đường link, trình duyệt sẽ nhận được HTML response từ server và tải lại toàn bộ trang web.
-- Với SPA, JavaScript có thể ngăn chặn việc điều hướng, tự động fetch data và update trang hiện tại mà không cần tải lại toàn bộ trang.
+- Tuy nhiên, chúng ta có thể có những component dùng chung 1 state:
 
-### 2. Vue Router
+  - Case 1: Nhiều `view` có thể phụ thuộc vào cùng 1 `state`.
+  - Case 2: Các `action` từ các `view` khác nhau có thể cần làm thay đổi cùng 1 `state`.
 
-- Là thư viện định tuyến chính thức của VueJS.
+_Giải pháp là gì?_
+
+#### 2. 🍍 Pinia
+
+- `Pinia` là 1 thư viện quản lý trạng thái, có thể gọi là thư viện để lưu trữ. Giống như `Vue Router`, `Pinia` là thư viện chính thức, thuộc ecosystem của Vue.
 - Cài đặt:
 
 ```bash
-npm install vue-router@4
-#or
-yarn add vue-router@4
+npm i pinia
+# or
+yarn add pinia
 ```
 
-## II. Getting started: Bắt đầu với Vue Router
+## II. Các khái niệm chính
 
-### 1. Config: Dùng mỗi SFC làm instance cho mỗi page
+### 1. Định nghĩa 1 store
 
-- Tạo một file router.js
+_Cú pháp định nghĩa 1 `store` bằng `Pinia` có 2 cách viết, hay còn gọi là: `Option Store` và `Setup Store`._
+
+- Sử dụng `defineStore` của `Pinia` để định nghĩa 1 store.
+- `defineStore` cần truyền vào 2 đối số:
+  - Thứ nhất là `id` (có thể hiểu là name) của store, kiểu `string`.
+  - Thứ 2 là một `Object` hoặc một `Callback` (tùy vào cách viết)
+
+#### Option
 
 ```js
-import { createRouter, createWebHistory } from 'vue-router';
-
-import About from '@components/About.vue';
-import User from '@components/User.vue';
-
-export const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    {
-      path: '/',
-      name: 'home'
-      component: () => import('@pages/index.vue'),
+export const useCounterStore = defineStore('counter', {
+  state: () => ({ count: 0 }),
+  getters: {
+    doubleCount: (state) => state.count * 2,
+  },
+  actions: {
+    increment() {
+      this.count++;
     },
-    {
-      path: '/about',
-      name: 'about'
-      component: About,
-    },
-    {
-      path: '/user',
-      name: 'user'
-      component: User,
-    },
-  ],
+  },
 });
 ```
 
-_Lưu ý: để sử dụng SFC làm page thì phải thêm plugin cho app._
+Có thể hiểu:
 
-- Ở file main.js:
+- `state` chính là các `ref` hoặc `reactive`.
+- `getters` chính là các hàm `computed`.
+- `actions` chính là các `function`.
 
-```js
-import { createApp } from 'vue';
-import App from './App.vue';
-import { router } from './router.js'; // inport file config cho router
-
-const app = createApp(App);
-app.use(router); // thêm plugin
-app.mount('#app');
-```
-
-### 2. Cách điều hướng
-
-`Vue Router` cung cấp 2 cách điều hướng chính:
-
-a) Sử dụng component: `RouterLink`
-
-- Khi sử dụng `RouterLink`, Vue sẽ render thành thẻ `<a><a/>` và tạo ra một liên kết trên trang web.
-- Props bắt buộc phải có của `RouterLink` là `to`, có kiểu `string` là path tới page hoặc 1 `object`.
-
-```html
-<nav>
-  <router-link to="/">Go to Home</router-link>
-  <router-link to="/about">Go to About</router-link>
-</nav>
-```
-
-_Lưu ý: khi sử dụng `to` cho `RouterLink`, path truyền cần phải match với SFC đã được định nghĩa_
-
-b) Sử dụng code js (Programmatic: có lập trình)
-
-`Vue Router` cung cấp composabe để giúp điều hướng thông qua JavaScript
+#### Setup
 
 ```js
-import { useRouter } from 'vue-router';
+export const useCounterStore = defineStore('counter', () => {
+  const count = ref(0);
+  const doubleCount = computed(() => count.value * 2);
+  function increment() {
+    count.value++;
+  }
 
-const router = useRouter();
-router.push('/');
-router.push('/about');
-router.push({ path: '/user' });
+  return { count, doubleCount, increment };
+});
 ```
 
-Đối số truyền vào của phương thức `push` cũng giống như prop `to` của `RouterLink` component.
+Với Setup store:
 
-### 3. Nơi hiển thị sau khi điều hướng
+- Các `ref()` hoặc `reactive()` trở thành các thuộc tính của `state`.
+- `computed()` trở thành `getters`.
+- `function()` trở thành `actions`.
 
-- `RouterView` chính là nơi để hứng component tương ứng khi người dùng điều hướng qua `RouterLink` hoặc `push()`.
-
-- Thường sẽ config ngay ở `App.vue`:
-
-```html
-<header />
-<div class="container">
-  <router-view />
-</div>
-<footer />
-```
-
-_Sau khi điều hướng, các component tương ứng sẽ thay thế vị trí của `router-view`_
-
-## III. Các yếu tố quan trọng
-
-### 1. Dynamic route matching: tạo bộ định tuyến động
-
-Điều này cho phép chỉ cần 1 SFC có thể làm instance cho nhiều page. Các page như thế thường có đặc điểm chung về giao diện và khác nhau về dữ liệu. `Vue Router` sử dụng 1 cái bộ phận động trong `path`, gọi là `param`:
+#### Sử dụng store
 
 ```js
-const routes = [{ path: '/users/:id', component: User }];
+import { useCounterStore } from '@/stores/counter';
+// access the `store`variable anywhere in the component ✨
+const counterStore = useCounterStore();
 ```
 
-Khi truy cập vào các URL như `/users/1`, `/users/2`,... thì tất cả đều match tới `User` component và page sẽ có `param` `id` sẽ tương ứng là `1`, `2`,...
-
-_Làm sao để điều hướng đến một dynamic route?_
-
-a) Sử dụng component `RouterLink`
-
-- Cách cùi bắp:
-
-```html
-<router-link to="/users/1">User 1</router-link>
-<router-link to="/users/2">User 2</router-link>
-```
-
-- Cách hay sử dụng:
+_Lưu ý: không nên sử dụng `Destructuring` để truy cập các state. Nó sẽ không bao giờ được update._
 
 ```js
-const userId = '1';
+import { useCounterStore } from '@/stores/counter';
+
+// ❌
+const { count, doubleCount } = useCounterStore();
+
+// ✅
+const counterStore = useCounterStore();
+counterStore.count;
+counterStore.doubleCount;
 ```
 
-```html
-<router-link :to="{ path: '/users', params: { id: userId } }">
-  User {{ userId }}
-</router-link>
-```
+### 2. State
 
-b) Sử dụng JS:
+- Là trái tim của 1 store, nơi lưu trữ dữ liệu.
+  Trong `Option Store`, `state` được định nghĩa là 1 hàm trả về giá trị khởi tạo.
+- Truy cập vào `state`
 
 ```js
-const userId = '1';
-// cách cùi bắp 1
-router.push(`/users/${userId}`);
-// cách cùi bắp 2
-router.push({ path: '/users', params: { id: userId } });
+import { useCounterStore } from '@/stores/counter';
+const counterStore = useCounterStore();
+console.log(counterStore.count);
 ```
 
-Có thể có _multiple params_, ví dụ
+#### Reset `state`
+
+_Chỉ hoạt động với `Option Store`_
 
 ```js
-const routes = [
-  { path: '/users/:username', component: User },
-  { path: '/users/:username/post/:postId', component: UserPost },
-];
+counterStore.$reset();
 ```
 
-Ở component, muốn lấy ra các params, sử dụng composable `useRoute()`
+#### Thay đổi `state`
+
+- Có 3 cách thay đổi giá trị cho `state` của 1 `store`
+  a) Thay đổi trực tiếp
+  b) `$patch()` method
+  c) Sử dụng `actions`
+
+#### Subscribing to the `state`
+
+Theo dõi sự thay đổi của `state` của 1 `store`
 
 ```js
-import { watch } from 'vue';
-import { useRoute } from 'vue-router';
-const route = useRoute();
-consle.log(route.params);
+counterStore.$subscribe((mutation, state) => {
+  console.log(mutation);
+  console.log(state.count);
+});
 ```
 
-Catch all / 404 Not found Route
+### 3. Getters
+
+#### Truy cập vào `getters` khác
 
 ```js
-const routes = [
-  // will match everything and put it under `route.params.pathMatch`
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
-  // will match anything starting with `/user-` and put it under `route.params.afterUser`
-  { path: '/user-:afterUser(.*)', component: UserGeneric },
-];
-```
-
-### 2. Named Routes: Đặt tên cho các route
-
-```js
-const routes = [
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
+export const useCounterStore = defineStore('counter', {
+  state: () => ({
+    count: 0,
+  }),
+  getters: {
+    doubleCount: (state) => state.count * 2,
+    doubleCountPlusOne() {
+      return this.doubleCount + 1;
+    },
   },
-  {
-    path: '/user/:id',
-    name: 'profile',
-    component: User,
-  },
-];
+});
 ```
 
-Khi config route, nếu thêm thuộc tính `name` cho route, khi điều hướng thay vì dùng `path`, chúng ta có thể dùng `name`.
-
-```html
-<router-link :to="{ name: 'login' }"> Login </router-link>
-<router-link :to="{ name: 'profile', params: { id: 1 } }">
-  User profile
-</router-link>
-```
-
-### 3. Nested Routes: page in page
-
-```
-/user/1/profile                   /user/1/posts
-┌──────────────────┐                  ┌──────────────────┐
-│ User             │                  │ User             │
-│ ┌──────────────┐ │                  │ ┌──────────────┐ │
-│ │ Profile      │ │  ●────────────▶  │ │ Posts        │ │
-│ │              │ │                  │ │              │ │
-│ └──────────────┘ │                  │ └──────────────┘ │
-└──────────────────┘                  └──────────────────┘
-```
-
-Tạo nested route bằng cách thêm cách thêm 1 mảng route vào thuộc tính `children` cho root route khi config.
+#### Truyền đối số cho `getters`
 
 ```js
-const routes = [
-  {
-    path: '/user/:id',
-    component: User,
-    children: [
-      {
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
-        path: 'profile',
-        name: 'user-profile',
-        component: UserProfile,
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'posts',
-        name: 'user-posts',
-        component: UserPosts,
-      },
-    ],
+export const useStore = defineStore('main', {
+  getters: {
+    getUserById: (state) => {
+      return (userId) => state.users.find((user) => user.id === userId);
+    },
   },
-];
+});
 ```
 
-Và ở `User` component không thể thiếu `router-view` - nơi mà các child route như `UserProfile` hay `UserPosts` sẽ được render.
+Sử dụng ở component:
 
 ```html
-<!-- User.vue -->
+<script setup>
+  import { storeToRefs } from 'pinia';
+  import { useUserListStore } from './store';
+
+  const userList = useUserListStore();
+  const { getUserById } = storeToRefs(userList);
+  // note you will have to use `getUserById.value` to access
+  // the function within the <script setup>
+</script>
+
 <template>
-  <div class="user">
-    <h2>User {{ userId }}</h2>
-    <router-view />
-  </div>
+  <p>User 2: {{ getUserById(2) }}</p>
 </template>
 ```
 
-### 4. Route Meta Fields
+#### Truy cập vào `store` khác
 
-Có thể thêm vào thuộc tính `meta` 1 object bất kỳ khi config route.
+### 4. Actions
 
 ```js
-const routes = [
-  {
-    path: '/login',
-    component: Login,
-    meta: {
-      layout: 'auth-layout',
-      title: 'Login',
+export const useCounterStore = defineStore('counter', {
+  state: () => ({
+    count: 0,
+  }),
+  actions: {
+    // since we rely on `this`, we cannot use an arrow function
+    increment() {
+      this.count++;
+    },
+    randomizeCounter() {
+      this.count = Math.round(100 * Math.random());
     },
   },
-];
-```
-
-Bằng cách sử dụng composable ở SFC, ta có thể sử dụng `meta` field mà ta đã config ban đầu.
-
-```js
-const route = useRoute();
-consle.log(route.meta.layout);
-document.title = route.meta.title;
-```
-
-### 5. Navigation Guards: Bảo vệ điều hướng?
-
-`Vue Router` cung cấp `guards` để bảo vệ route bằng cách `redirect` hoặc `cancel` khi điều hướng.
-Một số cách tham gia vào quá trình điều hướng
-
-a) Globally Guards
-
-- Tham gia trước khi vào 1 route nào đó được điều hướng.
-
-```js
-const router = createRouter({ ... });
-router.beforeEach((to, from, next) => {
-  // ...
-  if (!loggedIn && to.name !== 'Login') {
-    next({ name: 'Login' });
-  }
-  if (loggedIn && to.name === 'Login') {
-    next({ path: '/' });
-  }
-  next();
-  // explicitly return false to cancel the navigation
 });
 ```
-
-- Tham gia vào sau khi 1 route nào đó đã điều hướng xong.
-
-```js
-router.afterEach((to, from, failure) => {
-  const appName = 'Vue Router Awesome';
-  if (to.path !== '/' && to.name) {
-    document.title = `${to.name} | ${appName}`;
-  } else {
-    document.title = appName;
-  }
-});
-```
-
-b) Per-route Guards
-
-Có thể định nghĩa `beforeEnter` cụ thể cho từng route để tham gia vào trước khi điều hướng đến route đó.
-
-```js
-const routes = [
-  {
-    path: '/users/:id',
-    component: UserDetails,
-    beforeEnter: (to, from) => {
-      // reject the navigation
-      return false;
-    },
-  },
-];
-```
-
-`beforeEnter` có thể là 1 hàm `guards` hoặc là 1 mảng chứa các hàm `guards`.
-
-c) In-component Guards
-
-Với Composition API, có thể sử dụng hooks được cung cấp bởi `Vue Router`: `onBeforeRouteUpdate` vaf `onBeforeRouteLeave` ở trong component.
-
-### 6. Programmatic Navigation: điều hướng theo hướng lập trình.
-
-Khi sử dụng composable `useRouter`, ngoài phương thức `push` để điều hướng thì còn có `replace`, `go`, `back`, `forward`,...
-
-### 7. Active links
-
-`RouterLink` component sẽ thêm 2 CSS class khi được active: `router-link-active` và `router-link-exact-active`
-
-_Link được active khi nào?_
-
-1. Khi ...
-2. Khi ...
-
-### 8. Scroll Behavior: hành vi cuộn trang.
-
-`Vue Router` cho phép điều cuộn trang đến vị trí nào đó khi điều hướng hoặc giữ nguyên vị trí khi các route được điều hướng, hơn nữa hoàn toàn có thể tùy chỉnh vi khi cuộn.
-
-```js
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes: [...],
-  scrollBehavior (to, from, savedPosition) {
-    // return desired position
-    if (savedPosition) {
-      // giữ nguyên vị trí khi chuyển trang, giống với nút back và forward page của trình duyệt.
-      return savedPosition;
-    } else {
-      // luôn cuộn lên trên thẻ có id là main 1 khoảng cách top 10px
-      return { el: '#main', top: 10, behavior: 'smooth'};
-    }
-  }
-});
-```
-
-### 9. Transitions (cooming soon)
 
 ## Câu hỏi:
 
-1. Tại sao không cần import mà vẫn có thể sử dụng 2 component `RouterLink` và `RouterView`?
-2. Hiểu thế nào là `route`, thế nào là `router`?
-3. Có bao nhiêu cách điều hướng? Đó là?
-4. Chuyện gì xảy ra nếu điều hướng đến 1 route chưa được config? Cách xử lý?
+1. Muốn reset `state` với `Setup Store` thì làm như nào?
+
+2. Ngoài cách sử dụng phương thức `$subscribe()` để theo dõi sự thay đổi của `state` của 1 `store` thì còn những các nào khác không?

@@ -7,12 +7,8 @@ const route = useRoute();
 
 <template>
   <nav>
-    <router-link to="/?dz=true&xg=false#123">Go to Home</router-link>
-    <router-link to="/about">Go to About</router-link>
-    <router-link to="/docs">Go to docs</router-link>
-    <router-link :to="{ name: 'Profile', params: { username: 'phuong' } }">Go to profile of phuong</router-link>
-    <router-link :to="{ name: 'Profile', params: { username: 'khang' } }">Go to profile of khang</router-link>
-    <router-link :to="{ name: 'Profile', params: { username: 'dung' } }">Go to profile of dung</router-link>
+    <router-link to="/"> Home</router-link>
+    <router-link to="/docs">Docs</router-link>
   </nav>
   <RouterView />
 </template>
@@ -22,6 +18,8 @@ nav {
   > * {
     display: inline-block;
     margin-right: 10px;
+    color: #08c;
+    text-decoration: none;
   }
 }
 </style>
