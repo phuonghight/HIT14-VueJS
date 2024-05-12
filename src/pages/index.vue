@@ -1,10 +1,7 @@
 <script setup>
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-// document.title = route.meta.title;
+import Parent from '../components/Parent.vue';
 </script>
 
 <template>
-    <h1>Trang chủ</h1>
+  <Parent />
 </template>
