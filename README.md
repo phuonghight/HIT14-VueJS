@@ -1,236 +1,299 @@
-# Lession 07: State management - 🍍 Pinia
+# Lession 08: Component In-depth
 
-Mục lục:
+- [Lession 08: Component In-depth](#lession-08-component-in-depth)
+  - [I. Props](#i-props)
+    - [1. Khai báo Props](#1-khai-báo-props)
+    - [2. Cách sử dụng Prop](#2-cách-sử-dụng-prop)
+    - [3. One-Way Data Flow](#3-one-way-data-flow)
+  - [II. Events](#ii-events)
+    - [1. Emit và lắng nghe sự kiện](#1-emit-và-lắng-nghe-sự-kiện)
+    - [2. Đối số của sự kiện](#2-đối-số-của-sự-kiện)
+    - [3. Kết hợp `Props, Emiting và Listening Event` để tạo Two-way Data Flow](#3-kết-hợp-props-emiting-và-listening-event-để-tạo-two-way-data-flow)
+  - [III. Model](#iii-model)
+    - [1. Cơ bản](#1-cơ-bản)
+    - [2. Multiple model](#2-multiple-model)
+  - [IV. Slots](#iv-slots)
+    - [1. Basic](#1-basic)
+    - [2. Fallback Content](#2-fallback-content)
+    - [3. Đặt tên cho Slots (Sử dụng nhiều Slots)](#3-đặt-tên-cho-slots-sử-dụng-nhiều-slots)
+    - [4. Scoped Slots](#4-scoped-slots)
+  - [V. Provide/Inject](#v-provideinject)
+    - [1. Provide](#1-provide)
+    - [2. Inject](#2-inject)
 
-- [Lession 07: State management - 🍍 Pinia](#lession-07-state-management----pinia)
-  - [I. Quản lý state và thư viện Pinia](#i-quản-lý-state-và-thư-viện-pinia)
-    - [1. Quản lý state là gì?](#1-quản-lý-state-là-gì)
-    - [2. 🍍 Pinia](#2--pinia)
-  - [II. Các khái niệm chính](#ii-các-khái-niệm-chính)
-    - [1. Định nghĩa 1 store](#1-định-nghĩa-1-store)
-      - [Option](#option)
-      - [Setup](#setup)
-      - [Sử dụng store](#sử-dụng-store)
-    - [2. State](#2-state)
-      - [Reset `state`](#reset-state)
-      - [Thay đổi `state`](#thay-đổi-state)
-      - [Subscribing to the `state`](#subscribing-to-the-state)
-    - [3. Getters](#3-getters)
-      - [Truy cập vào `getters` khác](#truy-cập-vào-getters-khác)
-      - [Truyền đối số cho `getters`](#truyền-đối-số-cho-getters)
-      - [Truy cập vào `store` khác](#truy-cập-vào-store-khác)
-    - [4. Actions](#4-actions)
-  - [Câu hỏi:](#câu-hỏi)
+## I. Props
 
-## I. Quản lý state và thư viện Pinia
-
-#### 1. Quản lý state là gì?
-
-- Về mặt kỹ thuật, mỗi SFC quản lý state reactive riêng của nó. Nó là 1 vòng khép kín như sau:
-  ![one-way data flow](https://vuejs.org/assets/state-flow.Cd6No79V.png)
-
-- Tuy nhiên, chúng ta có thể có những component dùng chung 1 state:
-
-  - Case 1: Nhiều `view` có thể phụ thuộc vào cùng 1 `state`.
-  - Case 2: Các `action` từ các `view` khác nhau có thể cần làm thay đổi cùng 1 `state`.
-
-_Giải pháp là gì?_
-
-#### 2. 🍍 Pinia
-
-- `Pinia` là 1 thư viện quản lý trạng thái, có thể gọi là thư viện để lưu trữ. Giống như `Vue Router`, `Pinia` là thư viện chính thức, thuộc ecosystem của Vue.
-- Cài đặt:
-
-```bash
-npm i pinia
-# or
-yarn add pinia
-```
-
-## II. Các khái niệm chính
-
-### 1. Định nghĩa 1 store
-
-_Cú pháp định nghĩa 1 `store` bằng `Pinia` có 2 cách viết, hay còn gọi là: `Option Store` và `Setup Store`._
-
-- Sử dụng `defineStore` của `Pinia` để định nghĩa 1 store.
-- `defineStore` cần truyền vào 2 đối số:
-  - Thứ nhất là `id` (có thể hiểu là name) của store, kiểu `string`.
-  - Thứ 2 là một `Object` hoặc một `Callback` (tùy vào cách viết)
-
-#### Option
+### 1. Khai báo Props
 
 ```js
-export const useCounterStore = defineStore('counter', {
-  state: () => ({ count: 0 }),
-  getters: {
-    doubleCount: (state) => state.count * 2,
-  },
-  actions: {
-    increment() {
-      this.count++;
-    },
+const props = defineProps({
+  count: {
+    type: Number, // kiểu hoặc mảng chứa kiểu của prop
+    required: false, // true or false
+    default: 10, // giá trị mặc định khi không truyền prop
   },
 });
 ```
 
-Có thể hiểu:
+### 2. Cách sử dụng Prop
 
-- `state` chính là các `ref` hoặc `reactive`.
-- `getters` chính là các hàm `computed`.
-- `actions` chính là các `function`.
-
-#### Setup
+a)
+Khi định nghĩa thì đặt tên theo quy tắc `camelCase`
 
 ```js
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0);
-  const doubleCount = computed(() => count.value * 2);
-  function increment() {
-    count.value++;
-  }
-
-  return { count, doubleCount, increment };
+defineProps({
+  greetingMessage: String,
 });
 ```
 
-Với Setup store:
-
-- Các `ref()` hoặc `reactive()` trở thành các thuộc tính của `state`.
-- `computed()` trở thành `getters`.
-- `function()` trở thành `actions`.
-
-#### Sử dụng store
-
-```js
-import { useCounterStore } from '@/stores/counter';
-// access the `store`variable anywhere in the component ✨
-const counterStore = useCounterStore();
-```
-
-_Lưu ý: không nên sử dụng `Destructuring` để truy cập các state. Nó sẽ không bao giờ được update._
-
-```js
-import { useCounterStore } from '@/stores/counter';
-
-// ❌
-const { count, doubleCount } = useCounterStore();
-
-// ✅
-const counterStore = useCounterStore();
-counterStore.count;
-counterStore.doubleCount;
-```
-
-### 2. State
-
-- Là trái tim của 1 store, nơi lưu trữ dữ liệu.
-  Trong `Option Store`, `state` được định nghĩa là 1 hàm trả về giá trị khởi tạo.
-- Truy cập vào `state`
-
-```js
-import { useCounterStore } from '@/stores/counter';
-const counterStore = useCounterStore();
-console.log(counterStore.count);
-```
-
-#### Reset `state`
-
-_Chỉ hoạt động với `Option Store`_
-
-```js
-counterStore.$reset();
-```
-
-#### Thay đổi `state`
-
-- Có 3 cách thay đổi giá trị cho `state` của 1 `store`
-  a) Thay đổi trực tiếp
-  b) `$patch()` method
-  c) Sử dụng `actions`
-
-#### Subscribing to the `state`
-
-Theo dõi sự thay đổi của `state` của 1 `store`
-
-```js
-counterStore.$subscribe((mutation, state) => {
-  console.log(mutation);
-  console.log(state.count);
-});
-```
-
-### 3. Getters
-
-#### Truy cập vào `getters` khác
-
-```js
-export const useCounterStore = defineStore('counter', {
-  state: () => ({
-    count: 0,
-  }),
-  getters: {
-    doubleCount: (state) => state.count * 2,
-    doubleCountPlusOne() {
-      return this.doubleCount + 1;
-    },
-  },
-});
-```
-
-#### Truyền đối số cho `getters`
-
-```js
-export const useStore = defineStore('main', {
-  getters: {
-    getUserById: (state) => {
-      return (userId) => state.users.find((user) => user.id === userId);
-    },
-  },
-});
-```
-
-Sử dụng ở component:
+Khi truyền prop thì gọi theo quy tắc `kebab-case`
 
 ```html
-<script setup>
-  import { storeToRefs } from 'pinia';
-  import { useUserListStore } from './store';
-
-  const userList = useUserListStore();
-  const { getUserById } = storeToRefs(userList);
-  // note you will have to use `getUserById.value` to access
-  // the function within the <script setup>
-</script>
-
-<template>
-  <p>User 2: {{ getUserById(2) }}</p>
-</template>
+<MyComponent greeting-message="hello" />
 ```
 
-#### Truy cập vào `store` khác
+b)
+Với kiểu string thì có thể binding tĩnh
 
-### 4. Actions
+```html
+<BlogPost title="My journey with Vue" />
+```
+
+Các kiểu còn lại truyền vào prop phải dùng `v-bind` hoặc `:`
+
+```html
+<!-- kiểu number -->
+<BlogPost :likes="42" />
+
+<!-- kiểu boolean -->
+<BlogPost is-published />
+<BlogPost :is-published="false" />
+```
+
+### 3. One-Way Data Flow
+
+## II. Events
+
+### 1. Emit và lắng nghe sự kiện
+
+- B1: Định nghĩa và emit sự kiện ở `MyComponent.vue`:
 
 ```js
-export const useCounterStore = defineStore('counter', {
-  state: () => ({
-    count: 0,
-  }),
-  actions: {
-    // since we rely on `this`, we cannot use an arrow function
-    increment() {
-      this.count++;
-    },
-    randomizeCounter() {
-      this.count = Math.round(100 * Math.random());
-    },
-  },
+const emits = defineEmits(['inFocus', 'submit']);
+function buttonClick() {
+  emit('submit');
+}
+```
+
+```html
+<button @click="buttonClick">Click me to submit</button>
+```
+
+- B2: Ở component cha có thể lắng nghe sự kiên mà `MyComponent` emit lên
+
+```html
+<MyComponent
+  @in-focus="callbackFocus"
+  @submit="callbackSubmit"
+/>
+```
+
+### 2. Đối số của sự kiện
+
+Khi emit sự kiện ở component con, ngoài đối số đầu tiên là tên sự kiện, nếu ta tryền vào 1 hay nhiều đối số nữa thì ở component cha có thể lấy được đối số đó bằng cách sử dụng tham số ở callback lắng nghe
+
+- Ở `MyButton.vue`:
+
+```html
+<button @click="emits('eventame', 1, 2, 3)">
+  Kích để truyền 1, 2, 3 lên component cha
+</button>
+```
+
+- Khi sử dụng `MyButton` component:
+
+```html
+<MyButton
+  @event-name="(p1, p2, p3) => {
+  console.log(p1, p2, p3);
+}"
+/>
+```
+
+### 3. Kết hợp `Props, Emiting và Listening Event` để tạo Two-way Data Flow
+
+## III. Model
+
+Từ Vue 3.4 trở đi, các component hoàn toàn có thể nhanh chóng tạo cho nó 1 hoặc nhiều props Two-way Data Flow, gọi là `model`
+
+### 1. Cơ bản
+
+- Ở `MyComponent.vue`:
+
+```js
+const model = defineModel({
+  type: Number,
+  required: false,
+  default: 100,
+});
+function update() {
+  model.value++;
+}
+```
+
+- Sử dụng:
+
+```js
+const count = ref(0);
+```
+
+```html
+<MyComponent v-model="count" />
+```
+
+### 2. Multiple model
+
+- Khai báo sẽ đặt tên cho model
+
+```js
+const usernameModel = defineModel('username', {
+  type: String,
+  required: false,
+  default: '',
 });
 ```
 
-## Câu hỏi:
+- Khi sử dụng sẽ dụng `directives` `v-model:[modelName]`
 
-1. Muốn reset `state` với `Setup Store` thì làm như nào?
+```html
+<MyComponent v-model:username="username" />
+```
 
-2. Ngoài cách sử dụng phương thức `$subscribe()` để theo dõi sự thay đổi của `state` của 1 `store` thì còn những các nào khác không?
+## IV. Slots
+
+### 1. Basic
+
+- Template của `FancyButton.vue`
+
+```html
+<button class="fancy-btn">
+  <!-- slot outlet -->
+  <slot></slot>
+</button>
+```
+
+- Khi sử dụng, những content ở giữa sẽ được thay thế và đặt vào vị trí `slot`
+
+```html
+<FancyButton>
+  <!-- slot content -->
+  Click me!
+</FancyButton>
+```
+
+![Vue slot flow](https://vuejs.org/assets/slots.CKcE8XYd.png)
+
+### 2. Fallback Content
+
+Chúng ta có thể hiển thị 1 giao diện dự phòng khi có `slot outlet` nhưng không có `slot content`
+
+```html
+<button class="fancy-btn">
+  <!-- slot outlet -->
+  <slot>
+    <!-- fallback content -->
+    Fancy button
+  </slot>
+</button>
+```
+
+### 3. Đặt tên cho Slots (Sử dụng nhiều Slots)
+
+Nếu có trên 2 slot thì chúng ta phải đặt tên cho các slot
+
+- Ở `BaseLayout.vue`
+
+```html
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+- Khi sử dụng:
+
+```html
+<BaseLayout>
+  <template #header>
+    <!-- content for the header slot -->
+  </template>
+  <!-- content for the default slot -->
+  <div>Main content</div>
+  <template #footer>
+    <!-- content for the header slot -->
+  </template>
+</BaseLayout>
+```
+
+![](https://vuejs.org/assets/named-slots.CCIb9Mo_.png)
+
+Những `slot content` không đặt trong `template` hoặc được đặt trong `<teamplate #default></teamplate>` thì sẽ replace vào `slot` không có name.
+
+### 4. Scoped Slots
+
+Sử dụng `Scoped Slots` để có thể truyền dữ liệu từ `Slot outlet` lên `Slot content`
+
+```html
+<!-- <MyComponent> template -->
+<div>
+  <!-- scoped slot outlet -->
+  <slot
+    :text="greetingMessage"
+    :count="1"
+  ></slot>
+</div>
+```
+
+```html
+<MyComponent>
+  <!-- scoped slot content -->
+  <template #default="{ text, count }">
+    <div>
+      <p>{{ text }}</p>
+      <span>{{ count }}</span>
+    </div>
+  </template>
+</MyComponent>
+```
+
+## V. Provide/Inject
+
+Giải quyết được vấn đề truyền props qua nhiều tầng, mà các tầng trung gian không cần thiết
+![](https://vuejs.org/assets/prop-drilling.XJXa8UE-.png)
+
+### 1. Provide
+
+Chúng ta dùng `provide` để cung cấp 1 `value` thông qua `key` cho tất cả các component thuộc component mà sử dụng `provide`
+
+```js
+import { provide, ref } from 'vue';
+provide(/* key */ 'message', /* value */ 'hello!');
+const count = ref(0);
+provide('count', count);
+```
+
+### 2. Inject
+
+Chúng ta sử dụng `inject` để lấy `value` thông qua `key` mà những component chứa component mà sử dụng `inject` đã `provide`
+
+```js
+import { inject } from 'vue';
+const message = inject('message');
+```

@@ -1,8 +1,5 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import { useCounterOptionStore } from '../stores/counter.otiopn';
-
-const counterOptionStore = useCounterOptionStore();
 
 const html = ref('');
 onBeforeMount(async () => {
@@ -15,9 +12,6 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <h2>In Child: {{ counterOptionStore.count }}</h2>
-  <button @click="counterOptionStore.count = counterOptionStore.count * 2">Thay doi o Docs</button>
-
   <div
     class="docs"
     v-html="html"
