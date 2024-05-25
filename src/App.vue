@@ -1,82 +1,84 @@
 <script setup>
-import { $api } from "./api/index";
-import { useProfileStore } from "./stores/user";
-import { onBeforeMount, reactive } from "vue";
+import Model from "./components/Model.vue";
+import Notification from "./components/Notification.vue";
+import { ref } from "vue";
+const showModel = ref(false);
+const msgList = ref([]);
 
-const profileStore = useProfileStore();
-const user = reactive({});
-onBeforeMount(async () => {
-  try {
-    const res = await $api.get("user/me");
-    Object.assign(user, res.data.data);
-    profileStore.infor = user;
-    profileStore.isLoggedIn = true;
-    console.log(user);
-  } catch (error) {
-    console.log(error);
-  }
-});
+function deleteListItem() {
+  setTimeout(() => {
+    msgList.value.shift();
+  }, 3500);
+}
+
+function addError() {
+  msgList.value.push({
+    icon: "error",
+    msg: "Once upon a time you dressed so fine",
+  });
+  deleteListItem();
+}
+
+function addWarning() {
+  msgList.value.push({
+    icon: "warning",
+    msg: "How many roads must a man walk down",
+  });
+  deleteListItem();
+}
+
+function addSuccess() {
+  msgList.value.push({
+    icon: "success",
+    msg: "Cause you walked hand in hand With another man in my place",
+  });
+  deleteListItem();
+}
 </script>
+
 <template>
-  <router-view />
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <div class="button">
+    <button @click="showModel = true">Show Model</button>
+    <button @click="addError">Error</button>
+    <button @click="addWarning">Warning</button>
+    <button @click="addSuccess">Success</button>
+  </div>
+  <Model v-model="showModel"
+    >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis ut
+    tenetur quidem est animi dolores magni explicabo? Quos, mollitia! Dicta
+    tempora laboriosam aperiam vero ab at neque inventore beatae sunt!</Model
+  >
+  <Notification v-model:messageList="msgList" />
 </template>
-<style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-$primary-color: #496989;
-$second-color: #58a399;
-$third-color: #a8cd9f;
-$fourth-color: #e2f4c5;
-$font-text: "Kanit", sans-serif;
-
-* {
-  font-family: $font-text;
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
-
-.register-form {
-  position: relative;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
-
-.form-wrap {
-  background-color: $primary-color;
-  width: 500px;
-  border-radius: 30px;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  form {
-    width: 85%;
-
-    label {
-      color: $third-color;
-    }
-    input {
-      width: 92%;
-      padding: 8px 16px;
-      margin-bottom: 12px;
-    }
-    button {
-      width: 100%;
-    }
-
-    .form-error {
-      color: rgb(255, 91, 91);
-      margin: 0 0px 12px 0;
-    }
-    .form-feature {
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 0 10px 0;
-      a {
-        color: #000;
-        text-decoration: none;
-        &:hover {
-          color: $fourth-color;
-        }
-      }
-    }
-  }
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+button {
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin: 0 12px;
+}
+button:hover {
+  opacity: 0.7;
 }
 </style>
