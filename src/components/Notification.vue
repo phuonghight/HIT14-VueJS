@@ -1,16 +1,16 @@
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, onBeforeUnmount, onMounted, ref } from 'vue';
 
 import successIcon from '../assets/icons/success.svg';
 import errorIcon from '../assets/icons/error.svg';
 import warningIcon from '../assets/icons/warning.svg';
 
 const props = defineProps({
-  notification: {
-    type: Object,
-    default: { header: 'Header', content: 'Content' },
-  },
+  notification: { type: Object, required: true },
 });
+
+const notificationRef = ref(null);
+
 const iconSrc = computed(() => {
   if (props.notification.type === 'success') {
     return successIcon;
@@ -20,10 +20,35 @@ const iconSrc = computed(() => {
     return warningIcon;
   }
 });
+
+function pauseTimeout() {
+  props.notification.pauseTimeout();
+}
+
+function resumeTimeout() {
+  props.notification.resumeTimeout();
+}
+
+onMounted(() => {
+  if (props.notification.keepAliveOnHover) {
+    notificationRef.value.addEventListener('mouseover', pauseTimeout);
+    notificationRef.value.addEventListener('mouseout', resumeTimeout);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (props.notification.keepAliveOnHover) {
+    notificationRef.value.removeEventListener('mouseover', pauseTimeout);
+    notificationRef.value.removeEventListener('mouseout', resumeTimeout);
+  }
+});
 </script>
 
 <template>
-  <div class="notification">
+  <div
+    class="notification"
+    ref="notificationRef"
+  >
     <div class="icon">
       <img
         :src="iconSrc"

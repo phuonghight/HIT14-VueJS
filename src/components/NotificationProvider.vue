@@ -1,8 +1,18 @@
 <script setup>
-import { useNotificationStore } from '../stores/notification';
+import { provide, ref, defineProps, watchEffect } from 'vue';
 import Notification from './Notification.vue';
 
-const notificationStore = useNotificationStore();
+const props = defineProps({ max: { type: Number } });
+
+const notifications = ref([]);
+
+watchEffect(() => {
+  if (notifications.value.length > props.max) {
+    notifications.value.shift();
+  }
+});
+
+provide('Notifications', notifications);
 </script>
 
 <template>
@@ -10,9 +20,9 @@ const notificationStore = useNotificationStore();
     <div class="notification-list">
       <transition-group name="notify-transition">
         <Notification
-          v-for="noti in notificationStore.list"
-          :key="noti.id"
-          :notification="noti"
+          v-for="n in notifications"
+          :key="n.id"
+          :notification="n"
         />
       </transition-group>
     </div>
@@ -22,10 +32,6 @@ const notificationStore = useNotificationStore();
 
 <style lang="scss" scoped>
 .notification-provider {
-  // position: relative;
-  // height: 100%;
-  // width: 100%;
-  // overflow: hidden;
   .notification-list {
     z-index: 99;
     position: absolute;
@@ -34,7 +40,7 @@ const notificationStore = useNotificationStore();
   }
 }
 
-.notify-transition-move, /* apply transition to moving elements */
+.notify-transition-move,
 .notify-transition-enter-active,
 .notify-transition-leave-active {
   transition: all 0.5s ease;
@@ -42,12 +48,11 @@ const notificationStore = useNotificationStore();
 
 .notify-transition-enter-from,
 .notify-transition-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(50%);
 }
-
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
+.notify-transition-leave-to {
+  opacity: 0;
+}
 .notify-transition-leave-active {
   position: absolute;
 }
